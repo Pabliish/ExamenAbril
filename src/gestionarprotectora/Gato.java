@@ -4,16 +4,18 @@
  */
 package gestionarprotectora;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dam1
  */
-public class Gato extends Animal {
+public class Gato extends Animal implements Serializable, IInteractuable{
 
     private String pelaje;
     private boolean esAgresivo;
 
-    public Gato(String pelaje, boolean esAgresivo, int id, String nombre, int edad, Fecha fechaEntrada) {
+    public Gato( int id, String nombre, int edad, Fecha fechaEntrada, String pelaje, boolean esAgresivo) {
         super(id, nombre, edad, fechaEntrada);
         this.pelaje = pelaje;
         this.esAgresivo = esAgresivo;
@@ -49,5 +51,15 @@ public class Gato extends Animal {
             precio += 30;
         }
         return precio;
+    }
+
+    @Override
+    public void emitirSonido() {
+        System.out.println("Miau Miau");
+    }
+
+    @Override
+    public void jugar() {
+        System.out.println(getNombre() + " Salta tras un puntero laser");
     }
 }

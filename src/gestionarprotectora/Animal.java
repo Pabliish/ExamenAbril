@@ -4,20 +4,22 @@
  */
 package gestionarprotectora;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
  *
  * @author dam1
  */
-public abstract class Animal {
+public abstract class Animal implements Serializable{
 
     private int id;
     private String nombre;
     private int edad;
     private Fecha fechaEntrada;
-    private ArrayList historialMedico = new ArrayList<>();
+    private ArrayList<Revision> historialMedico = new ArrayList<>();
 
     public Animal(int id, String nombre, int edad, Fecha fechaEntrada) {
         this.id = id;
@@ -75,4 +77,9 @@ public abstract class Animal {
 
     public abstract double calcularTasaAdopcion();
 
+    
+    
+
+    
+    
 }

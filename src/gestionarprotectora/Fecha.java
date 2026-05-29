@@ -4,6 +4,7 @@
  */
 package gestionarprotectora;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -75,5 +76,10 @@ public class Fecha {
     @Override
     public String toString(){
         return String.format("%02d/%02d/%d", dia, mes, anho);
+    }
+    
+    public static Fecha stringToFecha(String s){
+        String[] d = s.split("/");
+        return new Fecha(Integer.parseInt(d[0]), Integer.parseInt(d[1]), Integer.parseInt(d[2]));
     }
 }

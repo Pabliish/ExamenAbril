@@ -4,16 +4,18 @@
  */
 package gestionarprotectora;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dam1
  */
-public class Perro extends Animal {
+public class Perro extends Animal implements Serializable, IInteractuable{
 
     private String raza;
     private boolean entrenado;
 
-    public Perro(String raza, boolean entrenado, int id, String nombre, int edad, Fecha fechaEntrada) {
+    public Perro( int id, String nombre, int edad, Fecha fechaEntrada, String raza, boolean entrenado) {
         super(id, nombre, edad, fechaEntrada);
         this.raza = raza;
         this.entrenado = entrenado;
@@ -35,6 +37,7 @@ public class Perro extends Animal {
         this.entrenado = entrenado;
     }
 
+    
     @Override
     public double calcularTasaAdopcion() {
         double precio = 50;
@@ -48,7 +51,22 @@ public class Perro extends Animal {
 
     @Override
     public String toString() {
-        return "Perro: " + "ID: " + super.getId() + " Nombre: " + super.getNombre() + " Edad: " + super.getEdad() + "Fecha de Entrada: " + super.getFechaEntrada() + " Raza: " + raza + " Entrenado: " + entrenado;
+        return "Perro: " + "ID: " + super.getId() +
+                " Nombre: " + super.getNombre() + 
+                " Edad: " + super.getEdad() + 
+                "Fecha de Entrada: " + super.getFechaEntrada() 
+                + " Raza: " + raza + " Entrenado: " + entrenado ;
+    }
+
+    @Override
+    public void emitirSonido() {
+        System.out.println("Guau Guau");
+    }
+    
+
+    @Override
+    public void jugar() {
+        System.out.println(getNombre() + " Juega con la pelota");
     }
 
 }

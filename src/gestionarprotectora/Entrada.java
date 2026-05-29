@@ -29,6 +29,10 @@ public class Entrada {
         int valor = Integer.parseInt(inicializar(""));
         return valor;
     }
+    public static int entero(String _msg){
+        int valor = Integer.parseInt(inicializar(""));
+        return valor;
+    }
     public static double real(){
         double valor = Double.parseDouble(inicializar(""));
         return valor;

@@ -36,6 +36,15 @@ public class Gato extends Animal implements Serializable, IInteractuable{
     public void setEsAgresivo(boolean esAgresivo) {
         this.esAgresivo = esAgresivo;
     }
+    
+     public void verFichaDetallada (){
+        System.out.println("ID: "+getId());
+        System.out.println("Nombre: "+getNombre());
+        System.out.println("Edad: "+getEdad());
+        System.out.println("Fecha de entrada: "+getFechaEntrada());
+        System.out.println("Pelaje: "+getPelaje());
+        System.out.println("Es agresivo?: "+isEsAgresivo());
+    }
 
     @Override
     public String toString() {

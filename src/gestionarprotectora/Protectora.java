@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,6 +70,55 @@ public class Protectora implements Serializable {
         }
     }
 
+    public void altaNuevoAnimal() {
+        int id = 101;
+        if (listaAnimales.isEmpty()) {
+            id = 101;
+        } else {
+            id = listaAnimales.getLast().getId() + 1;
+        }
+        boolean ok = false;
+        do {
+            System.out.println("Este animal es Gato (1) o Perro (2)? ");
+            int pog = Entrada.entero();
+            switch (pog) {
+                case 1:
+                    System.out.println("Escriba el nombre");
+                    String nombre = Entrada.cadena();
+                    System.out.println("Escriba la edad");
+                    int edad = Entrada.entero();
+                    System.out.println("Escriba la fecha de entrada en este formato dd/mm/aaaa");
+                    String fechaEntradaString = Entrada.cadena();
+                    Fecha fechaEntrada = Fecha.stringToFecha(fechaEntradaString);
+                    System.out.println("Que pelaje tiene?");
+                    String pelaje = Entrada.cadena();
+                    System.out.println("Es agresivo?");
+                    boolean esAgresivo = Entrada.booleano();
+                    Gato g = new Gato(id, nombre, edad, fechaEntrada, pelaje, esAgresivo);
+                    listaAnimales.add(g);
+                    ok = true;
+
+                    break;
+                case 2:
+                    System.out.println("Escriba el nombre");
+                    nombre = Entrada.cadena();
+                    System.out.println("Escriba la edad");
+                    edad = Entrada.entero();
+                    System.out.println("Escriba la fecha de entrada en este formato dd/mm/aaaa");
+                    fechaEntradaString = Entrada.cadena();
+                    fechaEntrada = Fecha.stringToFecha(fechaEntradaString);
+                    System.out.println("Que raza es?");
+                    pelaje = Entrada.cadena();
+                    System.out.println("Esta entrenado?");
+                    esAgresivo = Entrada.booleano();
+                    Perro p = new Perro(id, nombre, edad, fechaEntrada, pelaje, esAgresivo);
+                    ok = true;
+                    listaAnimales.add(p);
+            }
+
+        } while (!ok);
+    }
+
     public void listarAnimales() {
         System.out.println("--- Lista de animales del centro ---");
 
@@ -110,18 +160,20 @@ public class Protectora implements Serializable {
     public Animal buscarAnimal(int id) {
         boolean enc = false;
         Animal buscado = null;
-        System.out.println("--- Ficha detallada ---");
-        System.out.println("Introduce el id del animal: ");
-        id = Entrada.entero();
+//        System.out.println("--- Ficha detallada ---");
         for (int i = 0; i < listaAnimales.size() && !enc; i++) {
-            if (listaAnimales.get(i).getId() == buscado.getId()) {
+            if (listaAnimales.get(i).getId() == id) {
                 enc = true;
                 buscado = listaAnimales.get(i);
-                if (buscado instanceof Gato) {
-                    System.out.println("ID: " + buscado.getId() + "\tNombre: " + buscado.getNombre() + "\tEdad: " + buscado.getEdad());
-                    System.out.println("Fecha de entrada: " + buscado.getFechaEntrada() + "\tPelaje: " + ((Gato) buscado).getPelaje() + "\tAgresivo: " + ((Gato) buscado).isEsAgresivo());
-
-                }
+//                if (buscado instanceof Gato) {
+//                    System.out.println("ID: " + buscado.getId() + "\tNombre: " + buscado.getNombre() + "\tEdad: " + buscado.getEdad());
+//                    System.out.println("Fecha de entrada: " + buscado.getFechaEntrada() + "\tPelaje: " + ((Gato) buscado).getPelaje() + "\tAgresivo: " + ((Gato) buscado).isEsAgresivo());
+//
+//                } else if (buscado instanceof Perro) {
+//                    System.out.println("ID: " + buscado.getId() + "\tNombre: " + buscado.getNombre() + "\tEdad: " + buscado.getEdad());
+//                    System.out.println("Fecha de entrada: " + buscado.getFechaEntrada() + "\tRaza: " + ((Perro) buscado).getRaza() + "\tAgresivo: " + ((Perro) buscado).isEntrenado());
+//
+//                }
 
             }
 

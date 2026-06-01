@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author dam1
  */
-public abstract class Animal implements Serializable{
+public abstract class Animal implements Serializable {
 
     private int id;
     private String nombre;
@@ -27,6 +27,19 @@ public abstract class Animal implements Serializable{
         this.edad = edad;
         this.fechaEntrada = fechaEntrada;
     }
+
+    public void verHistorialMedico() {
+        if (historialMedico.isEmpty()) {
+            System.out.println("No hay revisiones para mostrar");
+        } else {
+            for (Revision r : historialMedico) {
+                System.out.println(r);
+            }
+        }
+
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -65,21 +78,16 @@ public abstract class Animal implements Serializable{
         if (this == _obj) {
             return true;
         }
-        
+
         if (_obj == null || getClass() != _obj.getClass()) {
             return false;
         }
-        
-        Animal otro= (Animal) _obj;
+
+        Animal otro = (Animal) _obj;
 
         return Objects.equals(this.id, otro.id);
     }
 
     public abstract double calcularTasaAdopcion();
 
-    
-    
-
-    
-    
 }

@@ -37,6 +37,15 @@ public class Perro extends Animal implements Serializable, IInteractuable{
         this.entrenado = entrenado;
     }
 
+    public void verFichaDetallada (){
+        System.out.println("ID: "+getId());
+        System.out.println("Nombre: "+getNombre());
+        System.out.println("Edad: "+getEdad());
+        System.out.println("Fecha de entrada: "+getFechaEntrada());
+        System.out.println("Raza: "+getRaza());
+        System.out.println("Esta entrenado?"+ isEntrenado());
+    }
+    
     
     @Override
     public double calcularTasaAdopcion() {

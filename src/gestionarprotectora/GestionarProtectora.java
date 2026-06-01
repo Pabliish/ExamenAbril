@@ -15,31 +15,48 @@ public class GestionarProtectora {
      */
     public static void main(String[] args) {
         Protectora miProtectora = Protectora.leerBinario();
-        
-        if (miProtectora==null) {
-            miProtectora= new Protectora();
+
+        if (miProtectora == null) {
+            miProtectora = new Protectora();
         }
-       int opM;
-       String nombreFichero;
+        int opM;
+        String nombreFichero;
         do {
-            opM= menu();
+            opM = menu();
             switch (opM) {
                 case 1:
+                    miProtectora.listarAnimales();
+
+                    break;
+                case 2:
+                    System.out.println("Cual es el ID de su animal?");
+                    int id2 = Entrada.entero();
+                    if (miProtectora.buscarAnimal(id2) != null && miProtectora.buscarAnimal(id2) instanceof Perro) {
+                        Perro p = (Perro) miProtectora.buscarAnimal(id2);
+                        p.verFichaDetallada();
+                    } else if (miProtectora.buscarAnimal(id2) != null && miProtectora.buscarAnimal(id2) instanceof Gato) {
+                        Gato g = (Gato) miProtectora.buscarAnimal(id2);
+                        
+                    } else {
+                        System.out.println("Ese animal no esta registrado");
+                    }
+                    break;
+
+                case 3:
+                    miProtectora.altaNuevoAnimal();
+                    break;
+                case 4:
                     System.out.println("Escriba el nombre del fichero: ");
                     nombreFichero = Entrada.cadena();
                     miProtectora.cargarFicheroTxt(nombreFichero);
                     break;
-                case 2: 
-                    miProtectora.listarAnimales();
-                    break;
             }
-            
+
         } while (true);
         //Protectora.guardarBinario(miProtectora);
     }
-    
-    
-    public static int menu(){
+
+    public static int menu() {
         int opMenu;
         System.out.println("***** Gestion Protectora Mundo Animal ******");
         System.out.println("    1. Listar animales");
@@ -51,11 +68,11 @@ public class GestionarProtectora {
         System.out.println("    7. Exportar historial de un animal a txt ");
         System.out.println("    8. Historial de adopciones");
         System.out.println("    0. Salir del menu");
-        
-        opMenu= Entrada.entero("Introduce una opcion");
-        
+
+        opMenu = Entrada.entero("Introduce una opcion");
+
         return opMenu;
-        
+
     }
-    
+
 }

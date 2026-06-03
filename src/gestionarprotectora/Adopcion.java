@@ -43,7 +43,6 @@ public class Adopcion implements Serializable{
 
     public void setNombreAdoptante(String nombreAdoptante) {
         this.nombreAdoptante = nombreAdoptante;
-    }
-    
+    }    
     
 }

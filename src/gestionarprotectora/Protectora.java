@@ -178,9 +178,7 @@ public class Protectora implements Serializable {
             }
 
         }
-        if (!enc) {
-            System.out.println("ERROR: no se ha encontrado el bicho");
-        }
+        
         return buscado;
     }
 
@@ -222,6 +220,21 @@ public class Protectora implements Serializable {
         } catch (IOException e) {
             System.out.println("ERROR: No se ha podido guardar el fichero protectora.dat");
         }
+    }
+    
+    public void tramitarAdopcion(){
+        System.out.print("ID del animal a adoptar: ");
+        int id = Entrada.entero();
+        Animal a = buscarAnimal(id);
+        System.out.print("Nombre del adoptante: ");
+        String nombre= Entrada.cadena();
+        System.out.print("Fecha de adopcion (dd/mm/aaaa): ");
+        String fechaStr=Entrada.cadena();
+        Fecha f = Fecha.stringToFecha(fechaStr);
+        Adopcion adopc = new Adopcion(f, nombre, a);
+        listaAnimales.remove(a);
+        listaAdopciones.add(adopc);
+        System.out.println("Adopcion tramitada con exito para " + a.getNombre());
     }
 
 }

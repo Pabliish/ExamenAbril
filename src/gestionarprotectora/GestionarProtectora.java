@@ -34,9 +34,11 @@ public class GestionarProtectora {
                     if (miProtectora.buscarAnimal(id2) != null && miProtectora.buscarAnimal(id2) instanceof Perro) {
                         Perro p = (Perro) miProtectora.buscarAnimal(id2);
                         p.verFichaDetallada();
+                        p.verHistorialMedico();
                     } else if (miProtectora.buscarAnimal(id2) != null && miProtectora.buscarAnimal(id2) instanceof Gato) {
                         Gato g = (Gato) miProtectora.buscarAnimal(id2);
-                        
+                        g.verFichaDetallada();
+                        g.verHistorialMedico();
                     } else {
                         System.out.println("Ese animal no esta registrado");
                     }
@@ -50,10 +52,36 @@ public class GestionarProtectora {
                     nombreFichero = Entrada.cadena();
                     miProtectora.cargarFicheroTxt(nombreFichero);
                     break;
+                    
+                case 5:
+                    Animal a = null;
+                    System.out.println("Que ID tiene el animal?");
+                    int id = Entrada.entero();
+                    if (miProtectora.buscarAnimal(id) != null && miProtectora.buscarAnimal(id) instanceof Perro) {
+                        Perro p = (Perro) miProtectora.buscarAnimal(id);
+                        p.addRevisionAnimal();
+                        
+                    } else if (miProtectora.buscarAnimal(id) != null && miProtectora.buscarAnimal(id) instanceof Gato) {
+                        Gato g = (Gato) miProtectora.buscarAnimal(id);
+                        g.addRevisionAnimal();
+                        
+                    } else {
+                        System.out.println("Ese animal no esta registrado");
+                    }
+                    break;
+                    
+                case 6:
+                    miProtectora.tramitarAdopcion();
+                    
+                case 0: 
+                    Protectora.guardarBinario(miProtectora);
+                    System.out.println("Saliendo del programa...");
+                    
+                    
             }
 
-        } while (true);
-        //Protectora.guardarBinario(miProtectora);
+        } while (opM!=0);
+        
     }
 
     public static int menu() {
@@ -63,7 +91,7 @@ public class GestionarProtectora {
         System.out.println("    2. Ver fichas detalladas de animal");
         System.out.println("    3. Dar de alta nuevo animal ");
         System.out.println("    4. Cargar lote de animales desde archivos");
-        System.out.println("    5. Annadir revision medica a un animal");
+        System.out.println("    5. Anyadir revision medica a un animal");
         System.out.println("    6. Tramitar adopcion");
         System.out.println("    7. Exportar historial de un animal a txt ");
         System.out.println("    8. Historial de adopciones");

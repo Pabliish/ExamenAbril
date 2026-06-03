@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
  *
  * @author dam1
  */
-public class Fecha {
+public class Fecha  implements Serializable{
 
     private int dia;
     private int mes;

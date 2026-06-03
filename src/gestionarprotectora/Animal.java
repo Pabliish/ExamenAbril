@@ -29,11 +29,13 @@ public abstract class Animal implements Serializable {
     }
 
     public void verHistorialMedico() {
+        System.out.println("----------HISTORIAL MEDICO----------");
+        System.out.println("");
         if (historialMedico.isEmpty()) {
             System.out.println("No hay revisiones para mostrar");
         } else {
             for (Revision r : historialMedico) {
-                System.out.println(r);
+                System.out.println("Fecha: "+r.getFecha()+ "  -->  Diagnostico: "+r.getDiagnostico());
             }
         }
 
@@ -86,6 +88,21 @@ public abstract class Animal implements Serializable {
         Animal otro = (Animal) _obj;
 
         return Objects.equals(this.id, otro.id);
+    }
+    
+    public void addRevisionAnimal(){
+        Revision r = null;
+        Fecha f = null;
+        String diagnostico = "";
+        do {            
+            System.out.println("Escriba la fecha de la revision con el siguiente formato: (dd/mm/aaaa)");
+            String fechaString = Entrada.cadena();
+            f = Fecha.stringToFecha(fechaString);
+        } while (f==null);
+        System.out.println("Por favor escriba el diagnostico: ");
+        diagnostico=Entrada.cadena();
+        r=new Revision(f, diagnostico);
+        historialMedico.add(r);
     }
 
     public abstract double calcularTasaAdopcion();

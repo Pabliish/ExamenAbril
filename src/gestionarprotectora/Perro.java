@@ -10,12 +10,12 @@ import java.io.Serializable;
  *
  * @author dam1
  */
-public class Perro extends Animal implements Serializable, IInteractuable{
+public class Perro extends Animal implements Serializable, IInteractuable {
 
     private String raza;
     private boolean entrenado;
 
-    public Perro( int id, String nombre, int edad, Fecha fechaEntrada, String raza, boolean entrenado) {
+    public Perro(int id, String nombre, int edad, Fecha fechaEntrada, String raza, boolean entrenado) {
         super(id, nombre, edad, fechaEntrada);
         this.raza = raza;
         this.entrenado = entrenado;
@@ -37,16 +37,24 @@ public class Perro extends Animal implements Serializable, IInteractuable{
         this.entrenado = entrenado;
     }
 
-    public void verFichaDetallada (){
-        System.out.println("ID: "+getId());
-        System.out.println("Nombre: "+getNombre());
-        System.out.println("Edad: "+getEdad());
-        System.out.println("Fecha de entrada: "+getFechaEntrada());
-        System.out.println("Raza: "+getRaza());
-        System.out.println("Esta entrenado?"+ isEntrenado());
+    public void verFichaDetallada() {
+        if (isEntrenado() == true) {
+            System.out.print("ID: " + getId());
+            System.out.print(" Nombre: " + getNombre());
+            System.out.println(" Edad: " + getEdad());
+            System.out.print("Fecha de entrada: " + getFechaEntrada());
+            System.out.print(" Raza: " + getRaza());
+            System.out.println(" Entrenado: si");
+        } else {
+            System.out.print("ID: " + getId());
+            System.out.print(" Nombre: " + getNombre());
+            System.out.println(" Edad: " + getEdad());
+            System.out.print("Fecha de entrada: " + getFechaEntrada());
+            System.out.print(" Raza: " + getRaza());
+            System.out.println(" Entrenado: no");
+        }
     }
-    
-    
+
     @Override
     public double calcularTasaAdopcion() {
         double precio = 50;
@@ -60,18 +68,17 @@ public class Perro extends Animal implements Serializable, IInteractuable{
 
     @Override
     public String toString() {
-        return "Perro: " + "ID: " + super.getId() +
-                " Nombre: " + super.getNombre() + 
-                " Edad: " + super.getEdad() + 
-                "Fecha de Entrada: " + super.getFechaEntrada() 
-                + " Raza: " + raza + " Entrenado: " + entrenado ;
+        return "Perro: " + "ID: " + super.getId()
+                + " Nombre: " + super.getNombre()
+                + " Edad: " + super.getEdad()
+                + "Fecha de Entrada: " + super.getFechaEntrada()
+                + " Raza: " + raza + " Entrenado: " + entrenado;
     }
 
     @Override
     public void emitirSonido() {
         System.out.println("Guau Guau");
     }
-    
 
     @Override
     public void jugar() {

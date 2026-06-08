@@ -1,0 +1,5 @@
+Datos del Animal
+Nombre: Luna	Edad: 5	ID: 103 Raza: Beagle	Entrenado: false Fecha entrada: 20/11/2023
+Historial medico
+Fecha: 10/02/24 ->  Diagnostico: Fimosis Severa
+

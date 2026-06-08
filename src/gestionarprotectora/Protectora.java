@@ -4,10 +4,12 @@
  */
 package gestionarprotectora;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -178,7 +180,7 @@ public class Protectora implements Serializable {
             }
 
         }
-        
+
         return buscado;
     }
 
@@ -221,20 +223,66 @@ public class Protectora implements Serializable {
             System.out.println("ERROR: No se ha podido guardar el fichero protectora.dat");
         }
     }
-    
-    public void tramitarAdopcion(){
+
+    public void tramitarAdopcion() {
         System.out.print("ID del animal a adoptar: ");
         int id = Entrada.entero();
         Animal a = buscarAnimal(id);
         System.out.print("Nombre del adoptante: ");
-        String nombre= Entrada.cadena();
+        String nombre = Entrada.cadena();
         System.out.print("Fecha de adopcion (dd/mm/aaaa): ");
-        String fechaStr=Entrada.cadena();
+        String fechaStr = Entrada.cadena();
         Fecha f = Fecha.stringToFecha(fechaStr);
         Adopcion adopc = new Adopcion(f, nombre, a);
         listaAnimales.remove(a);
         listaAdopciones.add(adopc);
         System.out.println("Adopcion tramitada con exito para " + a.getNombre());
+    }
+
+    public void escribirFicheroAnimal(int _id) {
+        Animal a = buscarAnimal(_id);
+        if (a == null) {
+            System.out.println("Animal no encontrado");
+        } else {
+            String nombreFichero = a.getNombre() + ".txt";
+            try {
+                FileWriter fw = new FileWriter(nombreFichero);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write("Datos del Animal");
+                bw.newLine();
+
+                    if (a instanceof Perro) {
+                        bw.write("Nombre: " + a.getNombre()+ "\tEdad: " + a.getEdad() + "\tID: " + a.getId()+" ");
+                        bw.write("Raza: " + ((Perro) a).getRaza()+ "\tEntrenado: " + ((Perro) a).isEntrenado()+" ");
+                        bw.write("Fecha entrada: "+ a.getFechaEntrada());
+                        
+
+                        
+                    } else if (a instanceof Gato) {
+                        bw.write("Nombre: " + a.getNombre()+ "\tEdad: " + a.getEdad() + "\tID: " + a.getId()+" ");
+                        bw.write("Pelaje: " + ((Gato) a).getPelaje()+ "\tAgresivo: " + ((Gato) a).isEsAgresivo()+" ");
+                        bw.write("Fecha entrada: "+ a.getFechaEntrada());
+                    }
+                    bw.newLine();
+                    bw.write("Historial medico\n");
+                    if (a.getHistorialMedico().isEmpty()) {
+                            bw.write("No tiene historial medico el bicho");
+                            bw.newLine();
+                        }else{
+                            for (Revision r  : a.getHistorialMedico() ) {
+                                bw.write("Fecha: " + r.getFecha()+ " -> " + " Diagnostico: " + r.getDiagnostico());
+                                bw.newLine();
+                            }
+                            bw.newLine();
+                        }
+                    
+                
+                bw.close();
+                System.out.println("Fichero exportado de " + nombreFichero);
+            } catch (IOException e) {
+                System.out.println("Error al exportar BICHO ");
+            }
+        }
     }
 
 }

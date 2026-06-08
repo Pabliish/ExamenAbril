@@ -74,6 +74,7 @@ public abstract class Animal implements Serializable {
     public void setFechaEntrada(Fecha fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
+    
 
     @Override
     public boolean equals(Object _obj) {
@@ -106,5 +107,13 @@ public abstract class Animal implements Serializable {
     }
 
     public abstract double calcularTasaAdopcion();
+
+    public ArrayList<Revision> getHistorialMedico() {
+        return historialMedico;
+    }
+
+    public void setHistorialMedico(ArrayList<Revision> historialMedico) {
+        this.historialMedico = historialMedico;
+    }
 
 }

@@ -19,7 +19,7 @@ public class GestionarProtectora {
         if (miProtectora == null) {
             miProtectora = new Protectora();
         }
-        int opM;
+        int opM,id;
         String nombreFichero;
         do {
             opM = menu();
@@ -56,7 +56,7 @@ public class GestionarProtectora {
                 case 5:
                     Animal a = null;
                     System.out.println("Que ID tiene el animal?");
-                    int id = Entrada.entero();
+                    id = Entrada.entero();
                     if (miProtectora.buscarAnimal(id) != null && miProtectora.buscarAnimal(id) instanceof Perro) {
                         Perro p = (Perro) miProtectora.buscarAnimal(id);
                         p.addRevisionAnimal();
@@ -72,7 +72,12 @@ public class GestionarProtectora {
                     
                 case 6:
                     miProtectora.tramitarAdopcion();
-                    
+                    break;
+                case 7:
+                    System.out.println("Dime el id del bicho que quieres exportar a txt");
+                    id= Entrada.entero();
+                    miProtectora.escribirFicheroAnimal(id);
+                    break;
                 case 0: 
                     Protectora.guardarBinario(miProtectora);
                     System.out.println("Saliendo del programa...");
@@ -102,5 +107,4 @@ public class GestionarProtectora {
         return opMenu;
 
     }
-
 }
